@@ -3,7 +3,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// ERROR - SHOULD WORK get all products - error
+// ERROR - get all products
 router.get('/', async (req, res) => {
   try {
     const productData = await Product.findAll({include: [{model: Category}, {model: Tag}]});

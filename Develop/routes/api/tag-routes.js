@@ -4,7 +4,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 // The `/api/tags` endpoint
 // ProductTag probably needs to be use with some through thing
 
-//SHOULD WORK - not sure if i need async for this with no req read
+//WONT WORK - SHOULD WORK - not sure if i need async for this with no req read - "name": "SequelizeEagerLoadingError"
 
 router.get('/', async (req, res) => {
   try{
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 //WONT WORK but it looks close
 router.get('/:id', async (req, res) => {
   try {
-    const tagData = await Tag.findbyPK(req.params.id, {
+    const tagData = await Tag.findByPK(req.params.id, {
       include: [{model: Product}]});
 
     if (!tagData) {
@@ -46,7 +46,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
-//should work with { "tag_name": "orange" } JSON sent to it - needs "" not '' 
+//WORKS should work with { "tag_name": "orange" } JSON sent to it - needs "" not '' 
 router.post('/', async (req, res) => {
   try {
     const tagData = await Tag.create(req.body);
@@ -59,7 +59,7 @@ router.post('/', async (req, res) => {
 });
 
 
-//DON't think it works but it's close - try { "tag_name": "orange" } with an id of 1 or something
+//DOESN'T WORK but it's close - try { "tag_name": "orange" } with an id of 1 or something
 router.put('/:id', async (req, res) => {
   try {
     const tagData = await Tag.update(
@@ -81,7 +81,7 @@ router.put('/:id', async (req, res) => {
 });
 
 
-
+//WORKS - Should work
 router.delete('/:id', async (req, res) => {
   try {
     const tagData = await Tag.destroy({
