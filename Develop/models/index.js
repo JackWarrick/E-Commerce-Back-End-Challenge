@@ -21,16 +21,21 @@ Category.hasMany(Product, {
 //SOMETHING IS GOING ON HERE WITH THE PRODUCT TAG MODEL HAVING multiple associations
 
 Product.belongsToMany(Tag, {
-  foreignKey: 'product_id',
-  onDelete: 'CASCADE'
+  through: {
+    model: ProductTag,
+    unique: false
+  },
+  as: 'product_of_tag'
 });
 
 // Tag belongToMany Products (through ProductTag)
 
 Tag.belongsToMany(Product, {
-  foreignKey: 'tag_id',
-  onDelete: 'CASCADE'
-
+  through: {
+    model: ProductTag,
+    unique: false
+  },
+  as: 'tag_of_product'
 });
 
 
