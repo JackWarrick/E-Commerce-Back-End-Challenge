@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 //WHY IS IT TAGS?  endpoint
+
 // The `/api/tags` endpoint
-// ProductTag probably needs to be use with some through thing
 
-//WONT WORK - SHOULD WORK - not sure if i need async for this with no req read - "name": "SequelizeEagerLoadingError"
 
+ // find all tags
+  // be sure to include its associated Product data
+//WORKS
 router.get('/', async (req, res) => {
   try{
     const tagData = await Tag.findAll({
@@ -17,10 +19,12 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 
-  // find all tags
-  // be sure to include its associated Product data
 });
 
+
+
+// find a single tag by its `id`
+// be sure to include its associated Product data
 
 //WONT WORK but it looks close
 router.get('/:id', async (req, res) => {
@@ -39,10 +43,6 @@ router.get('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-
-
-  // find a single tag by its `id`
-  // be sure to include its associated Product data
 });
 
 
@@ -59,7 +59,10 @@ router.post('/', async (req, res) => {
 });
 
 
-//DOESN'T WORK but it's close - try { "tag_name": "orange" } with an id of 1 or something
+// update a tag's name by its `id` value
+
+//DOESN'T WORK but it's on track - try { "tag_name": "orange" } with an id of 1 or something - look closer at product example
+
 router.put('/:id', async (req, res) => {
   try {
     const tagData = await Tag.update(
@@ -76,12 +79,12 @@ router.put('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err)
   }
-  // update a tag's name by its `id` value
 
 });
 
+// delete a tag by its `id` value
 
-//WORKS - Should work
+//WORKS 
 router.delete('/:id', async (req, res) => {
   try {
     const tagData = await Tag.destroy({
@@ -100,8 +103,6 @@ res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
   }
-
-  // delete on tag by its `id` value
 });
 
 module.exports = router;

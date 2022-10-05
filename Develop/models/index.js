@@ -18,24 +18,22 @@ Category.hasMany(Product, {
 });
 
 // Products belongToMany Tags (through ProductTag)
-//SOMETHING IS GOING ON HERE WITH THE PRODUCT TAG MODEL HAVING multiple associations
-
+//took off as: 'product_of_tag'
 Product.belongsToMany(Tag, {
   through: {
     model: ProductTag,
     unique: false
   },
-  as: 'product_of_tag'
 });
 
 // Tag belongToMany Products (through ProductTag)
+//took off as: 'tag_of_product'
 
 Tag.belongsToMany(Product, {
   through: {
     model: ProductTag,
     unique: false
   },
-  as: 'tag_of_product'
 });
 
 

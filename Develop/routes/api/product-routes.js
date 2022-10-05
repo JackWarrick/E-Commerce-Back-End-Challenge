@@ -3,7 +3,10 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// ERROR - get all products
+// find all products
+// be sure to include its associated Category and Tag data
+
+// WORKS
 router.get('/', async (req, res) => {
   try {
     const productData = await Product.findAll({include: [{model: Category}, {model: Tag}]});
@@ -12,13 +15,14 @@ router.get('/', async (req, res) => {
   } catch (err){
     res.status(500).json(err);
   }
-  // find all products
-  // be sure to include its associated Category and Tag data
+
 });
 
 
+// find a single product by its `id`
+// be sure to include its associated Category and Tag data
 
-// ERROR MIGHT NOT WORK get one product
+// WORKS
 router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
@@ -35,13 +39,11 @@ router.get('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err)
   }
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
 });
 
 
 
-// WORKS THIS IS ALREADY DONE I THINK create new product 
+// WORKS - THIS IS ALREADY DONE - create new product 
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
@@ -73,7 +75,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// ALREADY DONE I THINK update product
+// ALREADY DONE - update product
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
