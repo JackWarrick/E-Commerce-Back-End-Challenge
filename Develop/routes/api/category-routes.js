@@ -19,10 +19,10 @@ router.get('/', async (req, res) => {
 // find one category by its `id` value
 // be sure to include its associated Products
 
-//THIS ONE DOESN'T WORK
+//THIS ONE DOESN'T WORK - INTERNAL SERVER ERROR
 router.get('/:id', async (req, res) => {
   try {
-    const categoryData = await Category.findByPK(req.params.id, {
+    const categoryData = await Category.findByPk(req.params.id, {
       include: [{model: Product}]});
 
     if (!categoryData) {
@@ -64,10 +64,12 @@ router.post('/', async (req, res) => {
 // }
 router.put('/:id', async (req, res) => {
   try {
+    //this is the correct thing
     const categoryData = await Category.update(
-      {
-        category_name: req.body.category_name
+        req.body, {
+          where: { id: req.params.id  }
       });
+      //above
       if (!categoryData){
         res.status(404).json({
           message: 'OH NO! No category found with this id'
