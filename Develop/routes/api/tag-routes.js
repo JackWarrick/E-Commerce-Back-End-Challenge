@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
 
 // update a tag's name by its `id` value
 
-//DOESN'T WORK but it's on track - try { "tag_name": "orange" } with an id of 1 or something - look closer at product example
+//WORKS { "tag_name": "magenta" } with an id of 9
 
 router.put('/:id', async (req, res) => {
   try {

@@ -9,11 +9,9 @@
 
 * [Installation](#installation)
 
-* [Usage](#usage)
-
 * [Contributing](#contributing)
 
-* [Tests](#tests)
+* [Media](#media)
 
 * [License](#license)
 
@@ -27,17 +25,15 @@ This program is meant to be a back end for an e-commerce company selling items o
 
 Log in to mysql and run source schema.sql while in the correct directory. Then exit mysql and run npm run seed to put the seed data in the table. Then start the server by running npm start. Then, go to insomnia and try all of the routes of categories, products, and tags (http://localhost:3001/api/categories for example), and try the GET, POST, UPDATE and DELETE.
 
-## Usage
-
-NONE
-
 ## Contributing
 
 Jack Warrick
 
-## Tests
+## Media
 
-NONE
+**Demonstration Video:**
+
+[Link to Demonstration Video](https://drive.google.com/file/d/1dW5-ryIMWzhcJEvvTHZw7AOmf43cIrrk/view)
 
 ## License
 
@@ -46,4 +42,3 @@ This application is covered under the MIT License.
 ## Questions
 
 For more information, please reference my GitHub profile [here](https://github.com/JackWarrick), or reach out to my email: j.d.warrick@comcast.net.
-

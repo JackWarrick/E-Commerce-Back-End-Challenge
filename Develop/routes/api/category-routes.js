@@ -4,7 +4,7 @@ const { Category, Product } = require('../../models');
 // The `/api/categories` endpoint
 //get all category data
 
-//THIS ONE WORKS
+//WORKS
 router.get('/', async (req, res) => {
   try{
     const categoryData = await Category.findAll({include: [{model: Product}]});
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 // find one category by its `id` value
 // be sure to include its associated Products
 
-//THIS ONE DOESN'T WORK - INTERNAL SERVER ERROR
+//WORKS
 router.get('/:id', async (req, res) => {
   try {
     const categoryData = await Category.findByPk(req.params.id, {
@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
 
 // create a new category
 
-//THIS ONE WORKS WITH A { "category_name": "underwear" } JSON sent to it - needs "" not ''
+//THIS ONE WORKS WITH A { "category_name": "cool clothes" } JSON sent to it - needs "" not ''
 router.post('/', async (req, res) => {
   try {
     const categoryData = await Category.create(req.body);
@@ -56,12 +56,8 @@ router.post('/', async (req, res) => {
 
 // update a category by its `id` value
 
-//Doesn't work - sent this error - {
-// 	"generatedMessage": false,
-// 	"code": "ERR_ASSERTION",
-// 	"expected": true,
-// 	"operator": "=="
-// }
+//WORKS
+// { "category_name": "uncool clothes" }
 router.put('/:id', async (req, res) => {
   try {
     //this is the correct thing

@@ -44,15 +44,16 @@ router.get('/:id', async (req, res) => {
 
 
 // WORKS - THIS IS ALREADY DONE - create new product 
-router.post('/', (req, res) => {
-  /* req.body should look like this...
-    {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
+/* req.body should look like this...
+     {
+      "product_name": "King's crown",
+      "price": 100000,
+      "stock": 1,
+      "tagIds": [7,8]
     }
-  */
+    */
+router.post('/', (req, res) => {
+  
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -76,6 +77,14 @@ router.post('/', (req, res) => {
 });
 
 // ALREADY DONE - update product
+/*
+{
+  "product_name": "Regular crown",
+  "price": 100000,
+  "stock": 1,
+  "tagIds": [7]
+}
+*/
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
